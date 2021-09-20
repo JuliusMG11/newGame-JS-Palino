@@ -18,6 +18,7 @@ class Enemy {
     constructor() { 
         this.image = new Image();
         this.image.src = 'palino.png';
+        this.enemy = document.createElement("div");
         this.enemyWidth = 155;
         this.enemHeight = 155;
         this.width = this.enemyWidth / 2.5;
@@ -37,12 +38,19 @@ class Enemy {
     
 
 
-        // return enemy as html element
+    // return enemy as html element
 
+    enemyElement() {
+        return this.enemy;
+    }
 
     // enemy listener click
 
     enemyClickListener() {
+
+        this.enemy.addEventListener('click', () => {
+            console.log('test');
+        });
 
     }
 }
@@ -56,14 +64,6 @@ for ( let i = 0; i < numberOfEnemies; i++) {
 
 }
 
-const test = new Enemy();
-
-console.log(test.image);
-
-test.image.addEventListener('click', () => {
-    console.log('debil');
-});
-
 
 // create enemy on game
 
@@ -74,7 +74,7 @@ function startGame() {
    // enemy1.draw();
     enemiesArray.forEach(enemy => {
         enemy.draw();
-
+        enemy.enemyClickListener();
     });
     
     requestAnimationFrame(startGame);   
